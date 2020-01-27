@@ -2,4 +2,13 @@
 @import 'reset';
 @import './mixins';
 
+body {
+  padding: 30px;
+}
+
+.counter__value {
+  display: inline-block;
+  padding: 10px;
+  border: 2px solid gray;
+}
 
