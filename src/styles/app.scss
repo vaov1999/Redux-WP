@@ -3,12 +3,40 @@
 @import './mixins';
 
 body {
-  padding: 30px;
+    padding: 20px;
+    text-align: center;
+}
+
+.counter-decrement-button,
+.counter-increment-button {
+    background: #fff;
+    border-radius: 5px;
+    border: solid black 2px;
+    padding: 3px 5px;
 }
 
 .counter__value {
-  display: inline-block;
-  padding: 10px;
-  border: 2px solid gray;
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
 }
 
+#todo-input {
+    border: solid black 2px;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.todo {
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    border: 3px solid black;
+    border-radius: 5px;
+}
+#todo-btn-add{
+    padding: 3px 5px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
