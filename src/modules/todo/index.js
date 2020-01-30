@@ -5,22 +5,13 @@ const todoRootNode = document.getElementById('todo-list-root');
 const todoInputNode = document.getElementById('todo-input');
 const todoBtnAddNode = document.getElementById('todo-btn-add');
 
-document.addEventListener('keydown', (event) => {
-    console.log(event);
-    if (event.key === 'Enter') {
-        const title = todoInputNode.value;
-        const addTodoAction = addTodo(title);
-
-        store.dispatch(addTodoAction)
-    }
-});
-
-todoBtnAddNode.addEventListener('click', () => {
+function handleAddTodo (){
     const title = todoInputNode.value;
     const addTodoAction = addTodo(title);
 
+    todoInputNode.value = '';
     store.dispatch(addTodoAction)
-});
+}
 
 function renderTodoList() {
     const {todoReducer} = store.getState();
@@ -41,3 +32,9 @@ function renderTodoList() {
 store.subscribe(renderTodoList);
 
 renderTodoList();
+
+ document.addEventListener('keydown', (event) => {
+     if (event.key === 'Enter') handleAddTodo();
+ });
+
+ todoBtnAddNode.addEventListener('click', handleAddTodo);
