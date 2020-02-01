@@ -1,12 +1,13 @@
 import {store} from "../../store";
-import {addTodo} from "./acitons";
+import {addTodo, removeTodo} from "./acitons";
 
 const todoRootNode = document.getElementById('todo-list-root');
 const todoInputNode = document.getElementById('todo-input');
 const todoBtnAddNode = document.getElementById('todo-btn-add');
 
-function handleAddTodo (){
+function handleAddTodo() {
     const title = todoInputNode.value;
+
     const addTodoAction = addTodo(title);
 
     todoInputNode.value = '';
@@ -22,8 +23,20 @@ function renderTodoList() {
 
     items.forEach(item => {
         const itemNode = document.createElement('li');
-        itemNode.innerText = item;
+        const itemButtonNode = document.createElement('button');
+
+        itemNode.className = 'todo__list-item';
+
+        itemButtonNode.innerText = 'X';
+        itemButtonNode.className = 'todo__btn-del';
+
+        itemNode.innerText = item.title;
         listNode.appendChild(itemNode);
+        itemNode.appendChild(itemButtonNode);
+
+        itemButtonNode.addEventListener('click', () => {
+            store.dispatch(removeTodo(item.id))
+        });
     });
 
     todoRootNode.append(listNode)
@@ -33,8 +46,8 @@ store.subscribe(renderTodoList);
 
 renderTodoList();
 
- document.addEventListener('keydown', (event) => {
-     if (event.key === 'Enter') handleAddTodo();
- });
+document.addEventListener('keydown', event => {
+    if (event.key === 'Enter') handleAddTodo();
+});
 
- todoBtnAddNode.addEventListener('click', handleAddTodo);
+todoBtnAddNode.addEventListener('click', handleAddTodo);

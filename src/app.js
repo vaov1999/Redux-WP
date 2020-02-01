@@ -3,4 +3,3 @@ import {store} from "./store";
 import './modules/todo';
 
 window.store = store;
-
