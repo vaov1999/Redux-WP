@@ -1,5 +1,4 @@
-import './modules/counter';
-import {store} from "./store";
+import {store} from "./store.js";
 import './modules/todo';
-
+import '../listok';
 window.store = store;

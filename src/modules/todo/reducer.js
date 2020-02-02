@@ -8,19 +8,21 @@ const initialState = {
     ],
 };
 
-export function todoReducer(state = initialState, action) {
-    switch (action.type) {
+export function todoReducer(state = initialState, {type, payload}) {
+    const {items} = state;
+
+    switch (type) {
         case TODO_ADD:
             return {
                 ...state,
                 items: [
-                    ...state.items,
-                    action.payload,
+                    ...items,
+                    payload,
                 ],
             };
 
         case TODO_REMOVE: {
-            const newItems = state.items.filter(i => i.id !== action.payload.id);
+            const newItems = items.filter(i => i.id !== payload.id);
             return {
                 ...state,
                 items: newItems,
