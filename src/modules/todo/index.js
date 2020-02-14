@@ -1,26 +1,36 @@
 import { store } from '../../store';
-import { addTodo, removeTodo } from './acitons';
+import { addTodo, removeTodo, setFilter } from './acitons';
 
 const todoRootNode = document.getElementById('todo-list-root');
 const todoInputNode = document.getElementById('todo-input');
 const todoBtnAddNode = document.getElementById('todo-btn-add');
+const todoFilterInputNode = document.getElementById('todo-filter');
 
 function handleAddTodo() {
     const title = todoInputNode.value;
 
-    const addTodoAction = addTodo(title);
+    if (todoInputNode.value === '') {
+        const addTodoAction = addTodo('empty todo');
 
-    todoInputNode.value = '';
-    store.dispatch(addTodoAction);
+        todoInputNode.value = '';
+        store.dispatch(addTodoAction);
+    } else {
+        const addTodoAction = addTodo(title);
+
+        todoInputNode.value = '';
+        store.dispatch(addTodoAction);
+    }
 }
 
 function renderTodoList() {
-    const { items } = store.getState().todoReducer;
+    const { items, filter } = store.getState().todoReducer;
     const listNode = document.createElement('ul');
+    const filteredItems = items.filter(
+        i => i.title.toLowerCase().indexOf(filter.toLowerCase()) !== -1,
+    );
 
     todoRootNode.innerHTML = '';
-
-    items.forEach(item => {
+    filteredItems.forEach(item => {
         const itemNode = document.createElement('li');
         const itemButtonNode = document.createElement('button');
 
@@ -47,6 +57,10 @@ renderTodoList();
 
 document.addEventListener('keydown', event => {
     if (event.key === 'Enter') handleAddTodo();
+});
+
+todoFilterInputNode.addEventListener('input', () => {
+    store.dispatch(setFilter(todoFilterInputNode.value));
 });
 
 todoBtnAddNode.addEventListener('click', handleAddTodo);
