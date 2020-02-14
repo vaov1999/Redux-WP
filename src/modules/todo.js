@@ -15,9 +15,11 @@ const todoRootNode = document.getElementById('todo-list-root');
 const todoInputNode = document.getElementById('todo-input');
 const todoBtnAddNode = document.getElementById('todo-btn-add');
 
+
 // constants
 const TODO_ADD = 'TODO_ADD';
 const TODO_REMOVE = 'TODO_REMOVE';
+
 
 // actionsCreators
 function addTodo(title) {
@@ -144,8 +146,3 @@ renderTodoList();
 
 // subscribe
 store.subscribe(renderTodoList);// todo: how it works
-store.subscribe(() => {
-    const state = store.getState().todoReducer.items;
-
-    console.log('subscribe = ', state);
-});
