@@ -2,46 +2,116 @@
 @import 'reset';
 @import './mixins';
 
-.todo {
-    margin: 10px;
+$main-color: #999999;
+
+body {
+  background: #ffffff;
 }
 
-.todo__controls {
-    display: flex;
-    justify-content: center;
-    height: 33px;
+.counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  margin: 5px 0;
 }
 
-#todo-input {
-    display: flex;
-    height: 33px;
-    width: 100%;
-    border: solid 2px #898989;
-    border-right: 0;
+.counter__decrement,
+.counter__increment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 100%;
+  margin: 0 5px;
+  background: #ffffff;
+  border: solid $main-color 2px;
+  cursor: pointer;
 }
 
-#todo-btn-add {
-    border: 2px solid #898989;
-    width: 33px;
-    flex-shrink: 0;
-    cursor: pointer;
+.counter__value {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border: solid $main-color 2px;
+  background: #ffffff;
 }
 
-.todo__list-item {
-    display: flex;
-    justify-content: space-between;
-    height: 33px;
-    padding-left: 5px;
-    align-items: center;
-    border-left: solid #898989 2px;
-    border-bottom: solid #898989 2px;
+.todo,
+.doto {
+  margin: 10px 5px;
 }
 
-.todo__btn-del {
-    height: 100%;
-    width: 33px;
-    flex-shrink: 0;
-    border-left: solid #898989 2px;
-    border-right: solid #898989 2px;
-    cursor: pointer;
+.doto__title,
+.todo__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  border: solid $main-color 2px;
+  border-bottom: 0;
+  font-size: 20px;
+}
+
+.todo__controls,
+.doto__controls {
+  display: flex;
+  justify-content: center;
+  height: 35px;
+  border: solid $main-color 2px;
+  border-bottom: 0;
+}
+
+.todo-list-root,
+.doto__list-root, {
+  border: solid $main-color 2px;
+  border-top: 0;
+}
+
+.todo-input,
+.doto-input {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: 0 5px;
+  border-bottom: solid $main-color 1px;
+}
+
+.todo__controls-btn,
+.doto__controls-btn {
+  width: 35px;
+  height: 100%;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-left: solid $main-color 1px;
+  border-bottom: solid $main-color 1px;
+}
+
+.todo__list-item,
+.doto__item-block {
+  display: flex;
+  justify-content: space-between;
+  height: 35px;
+  padding-left: 5px;
+  align-items: center;
+  border-bottom: solid $main-color 1px;
+  background: #ffffff;
+}
+
+.todo__btn-del,
+.doto__item-del-btn {
+  height: 100%;
+  width: 35px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-left: solid $main-color 1px;
+}
+
+.doto__item-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

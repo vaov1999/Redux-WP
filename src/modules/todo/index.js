@@ -1,5 +1,5 @@
-import {store} from "../../store";
-import {addTodo, removeTodo} from "./acitons";
+import { store } from '../../store';
+import { addTodo, removeTodo } from './acitons';
 
 const todoRootNode = document.getElementById('todo-list-root');
 const todoInputNode = document.getElementById('todo-input');
@@ -11,12 +11,11 @@ function handleAddTodo() {
     const addTodoAction = addTodo(title);
 
     todoInputNode.value = '';
-    store.dispatch(addTodoAction)
+    store.dispatch(addTodoAction);
 }
 
 function renderTodoList() {
-    const {todoReducer} = store.getState();
-    const {items} = todoReducer;
+    const { items } = store.getState().todoReducer;
     const listNode = document.createElement('ul');
 
     todoRootNode.innerHTML = '';
@@ -35,11 +34,11 @@ function renderTodoList() {
         itemNode.appendChild(itemButtonNode);
 
         itemButtonNode.addEventListener('click', () => {
-            store.dispatch(removeTodo(item.id))
+            store.dispatch(removeTodo(item.id));
         });
     });
 
-    todoRootNode.append(listNode)
+    todoRootNode.append(listNode);
 }
 
 store.subscribe(renderTodoList);

@@ -1,32 +1,32 @@
-import {TODO_ADD, TODO_REMOVE} from "./constants";
+import { TODO_ADD, TODO_REMOVE } from './constants';
 
 const initialState = {
     items: [
-        {id: Date.now() / Math.random(), title: 'react'},
-        {id: Date.now() / Math.random(), title: 'redux'},
-        {id: Date.now() / Math.random(), title: 'learnJS'},
+        { id: Date.now() / Math.random(), title: 'react' },
+        { id: Date.now() / Math.random(), title: 'redux' },
+        { id: Date.now() / Math.random(), title: 'learnJS' },
     ],
 };
 
-export function todoReducer(state = initialState, {type, payload}) {
-    const {items} = state;
+export function todoReducer(state = initialState, action) {
+    const { items } = state;
 
-    switch (type) {
+    switch (action.type) {
         case TODO_ADD:
             return {
-                ...state,
                 items: [
                     ...items,
-                    payload,
+                    action.payload,
                 ],
             };
 
         case TODO_REMOVE: {
-            const newItems = items.filter(i => i.id !== payload.id);
+            const newItems = items.filter(i => i.id !== action.payload.id);
+
             return {
                 ...state,
                 items: newItems,
-            }
+            };
         }
 
         default:
