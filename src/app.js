@@ -1,5 +1,8 @@
-import './modules/counter';
-import {store} from "./store";
+// import './modules/todo';
 import './modules/todo';
+// import './modules/counter';
+// import './modules/doto';
 
-window.store = store;
+import { store } from './store';
+
+window.store = store; // todo: why 'store' defined here but not in the 'store.js'

@@ -1,4 +1,4 @@
-import {TODO_ADD, TODO_REMOVE} from "./constants";
+import { TODO_ADD, TODO_REMOVE } from './constants';
 
 export function addTodo(title) {
     return {
@@ -16,5 +16,5 @@ export function removeTodo(id) {
         payload: {
             id,
         },
-    }
+    };
 }
