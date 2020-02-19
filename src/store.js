@@ -1,5 +1,6 @@
 import { todoReducer } from './modules/todo/reducer';
-import { counterReducer } from './modules/counter/reducer';
+// eslint-disable-next-line import/no-cycle
+import { counterReducer } from './modules/counter';
 
 const combinedReducers = window.Redux.combineReducers({ todoReducer, counterReducer });
 
