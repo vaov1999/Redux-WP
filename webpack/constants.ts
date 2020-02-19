@@ -105,7 +105,7 @@ export const generateConfig = (env: IEnvironment): webpack.Configuration => {
   return {
     devtool: 'source-map',
     entry: [
-      './app.js',
+      './app.jsx',
       './styles/app.scss',
     ] as string[],
     resolve: {

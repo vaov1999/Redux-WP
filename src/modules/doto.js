@@ -47,14 +47,14 @@ const rootNode = document.getElementById('doto__list-root');
 // 4) 1 экшенКреатор ВСЕГДА возвращет только объект
 // 5) 0 в названии функции экшен-криейтора всегда есть слово "Action"
 function addDoto(title) {
-    return {
-        // eslint-disable-next-line @typescript-eslint/no-use-before-define
-        type: ADD_DOTO,
-        payload: {
-            id: Date.now() / Math.random(),
-            title,
-        },
-    };
+  return {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    type: ADD_DOTO,
+    payload: {
+      id: Date.now() / Math.random(),
+      title,
+    },
+  };
 }
 
 
@@ -72,20 +72,20 @@ const ADD_DOTO = 'ADD_DOTO';
 // 4) 1 диспатч является методом только стора
 // 5) 1 диспатчить экшены можно только в редьюсеры
 function handlerAddDoto() {
-    const inputTitle = dotoInputNode.value;
-    const addDotoAction = addDoto(inputTitle);
+  const inputTitle = dotoInputNode.value;
+  const addDotoAction = addDoto(inputTitle);
 
-    dotoInputNode.value = '';
+  dotoInputNode.value = '';
 
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    store.dispatch(addDotoAction);
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  store.dispatch(addDotoAction);
 }
 
 
 // listeners
 dotoAddBtnNode.addEventListener('click', handlerAddDoto);
 document.addEventListener('keydown', event => {
-    if (event.key === 'Shift') handlerAddDoto();
+  if (event.key === 'Shift') handlerAddDoto();
 });
 
 
@@ -94,11 +94,11 @@ document.addEventListener('keydown', event => {
 // 2) 1 предварительно созданный стор (или точка старта стора) - всегда называется - initialState
 // 3) 1 исходный initialState не может меняться, он дублируется в стор и уже его клон меняется
 const initialState = {
-    items: [
-        { id: Date.now() / Math.random(), title: 'first item' },
-        { id: Date.now() / Math.random(), title: 'second item' },
-        { id: Date.now() / Math.random(), title: 'third item' },
-    ],
+  items: [
+    { id: Date.now() / Math.random(), title: 'first item' },
+    { id: Date.now() / Math.random(), title: 'second item' },
+    { id: Date.now() / Math.random(), title: 'third item' },
+  ],
 };
 
 
@@ -112,21 +112,21 @@ const initialState = {
 // 8) 1 все действия (выражения) редьюсера находяться в условных конструкциях
 // 9) 1 в редьюсере используется только свич конструкция
 function dotoReducer(state = initialState, action) {
-    const { items } = state;
+  const { items } = state;
 
-    switch (action.type) {
-        case ADD_DOTO:
-            return {
-                ...state, // todo: this string do nothing
-                items: [
-                    ...items,
-                    action.payload,
-                ],
-            };
+  switch (action.type) {
+    case ADD_DOTO:
+      return {
+        ...state, // todo: this string do nothing
+        items: [
+          ...items,
+          action.payload,
+        ],
+      };
 
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 }
 
 
@@ -139,9 +139,9 @@ function dotoReducer(state = initialState, action) {
 // 6) 1 стор создаётся только через window.Redux.createStore()
 const combinedReducers = window.Redux.combineReducers({ dotoReducer });
 const store = window.Redux.createStore(
-    combinedReducers,
-    undefined,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  combinedReducers,
+  undefined,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 window.store = store;
@@ -151,34 +151,34 @@ window.store = store;
 // 1) 1 render it is not a part of redux - it just q service function
 // 2) 1 render func can change everything except store
 function renderDotoList() {
-    const { items } = store.getState().dotoReducer;
+  const { items } = store.getState().dotoReducer;
 
-    const dotoListNode = document.createElement('ul');
+  const dotoListNode = document.createElement('ul');
 
-    dotoListNode.className = 'doto__list';
-    rootNode.innerText = ''; // todo: how it works
+  dotoListNode.className = 'doto__list';
+  rootNode.innerText = ''; // todo: how it works
 
-    items.forEach(item => {
-        const dodoItemBlockNode = document.createElement('li');
+  items.forEach(item => {
+    const dodoItemBlockNode = document.createElement('li');
 
-        dodoItemBlockNode.className = 'doto__item-block';
+    dodoItemBlockNode.className = 'doto__item-block';
 
-        const dotoItemTextNode = document.createElement('div');
+    const dotoItemTextNode = document.createElement('div');
 
-        dotoItemTextNode.className = 'doto__item-text';
-        dotoItemTextNode.innerText = item.title;
+    dotoItemTextNode.className = 'doto__item-text';
+    dotoItemTextNode.innerText = item.title;
 
-        const dotoItemBtnNode = document.createElement('button');
+    const dotoItemBtnNode = document.createElement('button');
 
-        dotoItemBtnNode.className = 'doto__item-del-btn';
-        dotoItemBtnNode.innerText = 'X';
+    dotoItemBtnNode.className = 'doto__item-del-btn';
+    dotoItemBtnNode.innerText = 'X';
 
-        dotoListNode.appendChild(dodoItemBlockNode);
-        dodoItemBlockNode.appendChild(dotoItemTextNode);
-        dodoItemBlockNode.appendChild(dotoItemBtnNode);
-    });
+    dotoListNode.appendChild(dodoItemBlockNode);
+    dodoItemBlockNode.appendChild(dotoItemTextNode);
+    dodoItemBlockNode.appendChild(dotoItemBtnNode);
+  });
 
-    rootNode.append(dotoListNode);
+  rootNode.append(dotoListNode);
 }
 
 renderDotoList();
