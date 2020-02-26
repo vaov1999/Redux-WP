@@ -15,6 +15,7 @@ export function todoReducer(state = initialState, action) {
   switch (action.type) {
     case TODO_ADD:
       return {
+        ...state,
         items: [
           ...items,
           action.payload,
@@ -32,7 +33,7 @@ export function todoReducer(state = initialState, action) {
 
     case TODO_SET_FILTER: {
       return {
-        ...state,
+        ...state, // todo: what is happening if "...state,items" ?
         filter: action.payload.value,
       };
     }
