@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTodo, removeTodo, setFilter } from './acitons';
+import Switch from '@material-ui/core/Switch';
+import {
+  addTodo, removeTodo, setFilter, updateTodo,
+} from './acitons';
 
 export const Todo = () => {
   const { items, filter } = useSelector(state => state.todoReducer);
-  const [value, setValue] = useState('');
+  const [titleValue, setTitleValue] = useState('');
   const dispatch = useDispatch();
-  const trimmedValue = value.trim();
+  const trimmedValue = titleValue.trim();
   const filteredItems = items.filter(item => (
     item.title.toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1
   ));
@@ -25,22 +28,22 @@ export const Todo = () => {
         <input
           className="todo-input"
           placeholder="Type Todo here"
-          value={value}
-          onChange={event => setValue(event.target.value)} // todo: how it works
+          value={titleValue}
+          onChange={event => setTitleValue(event.target.value)} // todo: how it works
           onKeyDown={event => {
             if (event.key === 'Enter' && trimmedValue !== '') {
               dispatch(addTodo(trimmedValue));
-              setValue('');
+              setTitleValue('');
             }
           }}
         />
         <button
           className="todo__controls-btn"
-          disabled={!value}
+          disabled={!titleValue}
           onClick={() => {
             if (trimmedValue !== '') {
               dispatch(addTodo(trimmedValue));
-              setValue('');
+              setTitleValue('');
             }
           }}
         >
@@ -48,15 +51,22 @@ export const Todo = () => {
         </button>
       </div>
       <ul className="todo-list-root">
-        {filteredItems.map(item => (
-          <li className="todo__list-item" key={item.id}>
-            {item.title}
-            <button className="todo__btn-del" onClick={() => dispatch(removeTodo(item.id))}>X</button>
+        {filteredItems.map(({ id, isCompleted, title }) => (
+          <li className="todo__list-item" key={id}>
+            <Switch
+              value={isCompleted}
+              onChange={value => {
+                console.log(value);
+                dispatch(updateTodo(id, { isCompleted: value }));
+              }}
+            />
+            {title}
+            <button className="todo__btn-del" onClick={() => dispatch(removeTodo(id))}>X</button>
           </li>
         ))}
-        {!!trimmedValue && ( // todo: !!value === value ?
+        {!!trimmedValue && ( // todo: !!titleValue === titleValue ?
           <li className="todo__list-item" style={{ opacity: 0.5 }}>
-            {value}
+            {titleValue}
             <button className="todo__btn-del">X</button>
           </li>
         )}
