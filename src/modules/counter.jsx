@@ -1,16 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const INCREMENT = 'INCREMENT';
-export const DECREMENT = 'DECREMENT';
+const INCREMENT = 'INCREMENT';
+const DECREMENT = 'DECREMENT';
 
-export function incrementAction() {
+function incrementAction() {
   return {
     type: INCREMENT,
   };
 }
 
-export function decrementAction() {
+function decrementAction() {
   return {
     type: DECREMENT,
   };

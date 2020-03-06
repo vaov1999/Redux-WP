@@ -123,3 +123,9 @@ body {
     border-left: solid $main-color 2px;
     border-right: solid $main-color 2px;
 }
+
+.todo__switch-block {
+  width: 55px;
+  border-right: solid $main-color 1px;
+  margin-left: -5px;
+}

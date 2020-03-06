@@ -1,14 +1,11 @@
 import {
-  TODO_ADD, TODO_UPDATE, TODO_REMOVE, TODO_SET_FILTER,
+  TODO_ADD, TODO_UPDATE, TODO_REMOVE, TODO_SET_FILTER, TODO_GET_ITEMS, TODO_GET_ITEMS_SUCCESS,
 } from './constants';
 
 const initialState = {
   filter: '',
-  items: [
-    { id: Date.now() / Math.random(), isCompleted: false, title: 'react' },
-    { id: Date.now() / Math.random(), isCompleted: false, title: 'redux' },
-    { id: Date.now() / Math.random(), isCompleted: false, title: 'learnJS' },
-  ],
+  isLoading: false,
+  items: [],
 };
 
 export function todoReducer(state = initialState, { type, payload }) {
@@ -31,6 +28,21 @@ export function todoReducer(state = initialState, { type, payload }) {
       });
 
       return { ...state, items: newItems };
+    }
+
+    case TODO_GET_ITEMS: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+
+    case TODO_GET_ITEMS_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        items: payload,
+      };
     }
 
     case TODO_REMOVE: {

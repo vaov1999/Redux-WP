@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Switch from '@material-ui/core/Switch';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import {
-  addTodo, removeTodo, setFilter, updateTodo,
+  addTodo, getTodos, removeTodo, setFilter, updateTodo,
 } from './acitons';
 
 export const Todo = () => {
-  const { items, filter } = useSelector(state => state.todoReducer);
+  const { isLoading, items, filter } = useSelector(state => state.todoReducer);
   const [titleValue, setTitleValue] = useState('');
   const dispatch = useDispatch();
   const trimmedValue = titleValue.trim();
@@ -14,7 +15,15 @@ export const Todo = () => {
     item.title.toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1
   ));
 
-  // console.log('items', items, ' filter', filter, ' filtered', filteredItems);
+  useEffect(() => dispatch(getTodos()), []);
+
+  if (isLoading) {
+    return (
+      <div className="todo">
+        <LinearProgress className="todo__spinner" />
+      </div>
+    );
+  }
 
   return (
     <div className="todo">
@@ -29,7 +38,7 @@ export const Todo = () => {
           className="todo-input"
           placeholder="Type Todo here"
           value={titleValue}
-          onChange={event => setTitleValue(event.target.value)} // todo: how it works
+          onChange={event => setTitleValue(event.target.value)}
           onKeyDown={event => {
             if (event.key === 'Enter' && trimmedValue !== '') {
               dispatch(addTodo(trimmedValue));
@@ -53,15 +62,19 @@ export const Todo = () => {
       <ul className="todo-list-root">
         {filteredItems.map(({ id, isCompleted, title }) => (
           <li className="todo__list-item" key={id}>
-            <Switch
-              value={isCompleted}
-              onChange={value => {
-                console.log(value);
-                dispatch(updateTodo(id, { isCompleted: value }));
-              }}
-            />
+            <div className="todo__switch-block">
+              <Switch
+                value={isCompleted}
+                onChange={value => dispatch(updateTodo(id, { isCompleted: value }))}
+              />
+            </div>
             {title}
-            <button className="todo__btn-del" onClick={() => dispatch(removeTodo(id))}>X</button>
+            <button
+              className="todo__btn-del"
+              onClick={() => dispatch(removeTodo(id))}
+            >
+              X
+            </button>
           </li>
         ))}
         {!!trimmedValue && ( // todo: !!titleValue === titleValue ?
