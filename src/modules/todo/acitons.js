@@ -1,16 +1,32 @@
 import {
-  TODO_ADD, TODO_GET_ITEMS, TODO_GET_ITEMS_SUCCESS, TODO_REMOVE, TODO_SET_FILTER, TODO_UPDATE,
+  TODO_ADD,
+  TODO_ADD_SUCCESS,
+  TODO_GET_ITEMS,
+  TODO_GET_ITEMS_SUCCESS,
+  TODO_REMOVE,
+  TODO_SET_FILTER,
+  TODO_UPDATE,
 } from './constants';
-import { requestTodoItems } from '../../api';
+import {
+  deleteTodo, postTodo, putTodo, requestTodoItems,
+} from '../../api';
+
+export function addTodoSuccess(todo) {
+  return {
+    type: TODO_ADD_SUCCESS,
+    payload: todo,
+  };
+}
 
 export function addTodo(title) {
-  return {
-    type: TODO_ADD,
-    payload: {
-      id: Date.now() / Math.random(),
-      isCompleted: false,
-      title,
-    },
+  const todo = {
+    isCompleted: false,
+    title,
+  };
+
+  return dispatch => {
+    dispatch({ type: TODO_ADD });
+    postTodo(todo).then(result => dispatch(addTodoSuccess(result)));
   };
 }
 
@@ -28,14 +44,18 @@ export function getTodos() {
   };
 }
 
-export function updateTodo(id, data) {
+export function updateTodo(id, isCompleted) {
+  putTodo({ id, isCompleted });
+
   return {
     type: TODO_UPDATE,
-    payload: { id, data },
+    payload: { id, isCompleted },
   };
 }
 
 export function removeTodo(id) {
+  deleteTodo(id);
+
   return {
     type: TODO_REMOVE,
     payload: { id },

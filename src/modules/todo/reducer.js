@@ -1,5 +1,11 @@
 import {
-  TODO_ADD, TODO_UPDATE, TODO_REMOVE, TODO_SET_FILTER, TODO_GET_ITEMS, TODO_GET_ITEMS_SUCCESS,
+  TODO_ADD,
+  TODO_ADD_SUCCESS,
+  TODO_UPDATE,
+  TODO_GET_ITEMS,
+  TODO_GET_ITEMS_SUCCESS,
+  TODO_REMOVE,
+  TODO_SET_FILTER,
 } from './constants';
 
 const initialState = {
@@ -15,13 +21,20 @@ export function todoReducer(state = initialState, { type, payload }) {
     case TODO_ADD:
       return {
         ...state,
+        isLoading: true,
+      };
+
+    case TODO_ADD_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
         items: [...items, payload],
       };
 
     case TODO_UPDATE: {
       const newItems = items.map(item => {
         if (item.id === payload.id) {
-          return { ...item, ...payload.data };
+          return { ...item, ...payload.isCompleted };
         }
 
         return item;
@@ -31,10 +44,7 @@ export function todoReducer(state = initialState, { type, payload }) {
     }
 
     case TODO_GET_ITEMS: {
-      return {
-        ...state,
-        isLoading: true,
-      };
+      return { ...state, isLoading: true };
     }
 
     case TODO_GET_ITEMS_SUCCESS: {

@@ -64,11 +64,14 @@ export const Todo = () => {
           <li className="todo__list-item" key={id}>
             <div className="todo__switch-block">
               <Switch
+                color="primary"
+                checked={isCompleted}
                 value={isCompleted}
-                onChange={value => dispatch(updateTodo(id, { isCompleted: value }))}
+                onChange={event => dispatch(updateTodo(id,
+                  { isCompleted: event.target.checked }))}
               />
             </div>
-            {title}
+            <div className="todo__text">{title}</div>
             <button
               className="todo__btn-del"
               onClick={() => dispatch(removeTodo(id))}

@@ -4,124 +4,147 @@
 
 $main-color: #999999;
 
-body {
-    background: #ffffff;
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.header__item {
+  display: flex;
+  justify-content: center;
+  flex-grow: 2;
+  border: solid $main-color 2px;
+  padding: 5px;
+}
+
+.counter--wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .counter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 30px;
-    margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  margin: 5px 0;
 }
 
 .counter__decrement,
 .counter__increment {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    width: 30px;
-    height: 100%;
-    margin: 0 5px;
-    background: #ffffff;
-    border: solid $main-color 2px;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 100%;
+  margin: 0 5px;
+  background: #ffffff;
+  border: solid $main-color 2px;
+  cursor: pointer;
 }
 
 .counter__value {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    border: solid $main-color 2px;
-    background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-width: 100px;
+  max-width: 175px;
+  border: solid $main-color 2px;
+  background: #ffffff;
 }
 
 .todo,
 .doto {
-    margin: 10px 5px;
+  margin: 10px 5px;
 }
 
 .doto__title,
 .todo__title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 30px;
-    border: solid $main-color 2px;
-    font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  border: solid $main-color 2px;
+  font-size: 20px;
 }
 
 .todo__controls,
 .doto__controls {
-    display: flex;
-    justify-content: center;
-    height: 35px;
-    border: solid $main-color 2px;
-    border-bottom: 0;
+  display: flex;
+  justify-content: center;
+  height: 35px;
+  border: solid $main-color 2px;
+  border-bottom: 0;
 }
 
 .todo-list-root,
 .doto__list-root, {
-    border: solid $main-color 2px;
-    border-top: 0;
+  border: solid $main-color 2px;
+  border-top: 0;
 }
 
 .todo-input,
 .doto-input {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    padding: 0 5px;
-    border-bottom: solid $main-color 1px;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: 0 5px;
+  border-bottom: solid $main-color 1px;
 }
 
 .todo__controls-btn,
 .doto__controls-btn {
-    width: 35px;
-    height: 100%;
-    flex-shrink: 0;
-    cursor: pointer;
-    border-left: solid $main-color 1px;
-    border-bottom: solid $main-color 1px;
+  width: 35px;
+  height: 100%;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-left: solid $main-color 1px;
+  border-bottom: solid $main-color 1px;
 }
 
 .todo__list-item,
 .doto__item-block {
-    display: flex;
-    justify-content: space-between;
-    height: 35px;
-    padding-left: 5px;
-    align-items: center;
-    border-bottom: solid $main-color 1px;
-    background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  height: 35px;
+  padding-left: 5px;
+  align-items: center;
+  border-bottom: solid $main-color 1px;
+  background: #ffffff;
+}
+
+.todo__text {
+  padding: 0 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .todo__btn-del,
 .doto__item-del-btn {
-    height: 100%;
-    width: 35px;
-    flex-shrink: 0;
-    cursor: pointer;
-    border-left: solid $main-color 1px;
+  height: 100%;
+  width: 35px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-left: solid $main-color 1px;
 }
 
 .doto__item-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .todo-filter {
-    display: flex;
-    height: 30px;
-    width: 100%;
-    padding: 0 5px;
-    border-left: solid $main-color 2px;
-    border-right: solid $main-color 2px;
+  display: flex;
+  height: 30px;
+  width: 100%;
+  padding: 0 5px;
+  border-left: solid $main-color 2px;
+  border-right: solid $main-color 2px;
 }
 
 .todo__switch-block {

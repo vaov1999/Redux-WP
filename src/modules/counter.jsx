@@ -10,11 +10,7 @@ function incrementAction() {
   };
 }
 
-function decrementAction() {
-  return {
-    type: DECREMENT,
-  };
-}
+const decrementAction = () => ({ type: DECREMENT });
 
 export function counterReducer(state = 0, action) {
   switch (action.type) {
@@ -29,20 +25,17 @@ export function counterReducer(state = 0, action) {
 
 export function Counter() {
   const dispatch = useDispatch();
-  // const handleIncrement = () => dispatch(incrementAction());
-  // const handleIncrementAlt = () => useDispatch(incrementAction());
-  // const handleIncrementAlt2 = () => store.dispatch(incrementAction());
 
   return (
-    <div>
+    <div className="counter--wrapper">
       <div className="counter">
         {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-        <div onClick={() => dispatch(decrementAction())} className="counter__decrement">-</div>
+        <div className="counter__decrement" onClick={() => dispatch(decrementAction())}>-</div>
         <div className="counter__value">
           {useSelector(state => state.counterReducer)}
         </div>
         {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-        <div onClick={() => dispatch(incrementAction())} className="counter__increment">+</div>
+        <div className="counter__increment" onClick={() => dispatch(incrementAction())}>+</div>
       </div>
     </div>
   );
