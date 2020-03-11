@@ -1,4 +1,5 @@
 import {
+  GET_CURRENT_ROUTE,
   TODO_ADD,
   TODO_ADD_SUCCESS,
   TODO_GET_ITEMS,
@@ -15,6 +16,13 @@ export function addTodoSuccess(todo) {
   return {
     type: TODO_ADD_SUCCESS,
     payload: todo,
+  };
+}
+
+export function getCurrentRoute(route) {
+  return {
+    type: GET_CURRENT_ROUTE,
+    payload: route,
   };
 }
 

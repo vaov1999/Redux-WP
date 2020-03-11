@@ -6,3 +6,4 @@ export const TODO_UPDATE = 'TODO_UPDATE';
 export const TODO_GET_ITEMS = 'TODO_GET_ITEMS';
 export const TODO_GET_ITEMS_SUCCESS = 'TODO_GET_ITEMS_SUCCESS';
 export const BASIC_URL = 'http://127.0.0.1:3000/';
+export const GET_CURRENT_ROUTE = 'GET_CURRENT_ROUTE';
