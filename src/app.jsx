@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import { store } from './store';
-import { Todo } from './modules/todo/index';
-import { Header } from './modules/Header';
+import { Header, Routes } from './modules/Header';
 
 ReactDom.render(
   <BrowserRouter>
@@ -12,7 +11,7 @@ ReactDom.render(
       <Header />
 
       <Switch>
-        <Route path="/todo" component={Todo} />
+        {Routes()}
       </Switch>
     </Provider>
   </BrowserRouter>,

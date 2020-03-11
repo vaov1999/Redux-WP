@@ -67,10 +67,10 @@ export const Routes = () => initialState.links.map(({
   id, route, component,
 }) => {
   if (route === '/') {
-    return (<Route exact key={id} to={route} component={component} />);
+    return (<Route exact key={id} path={route} component={component} />);
   }
 
-  return (<Route key={id} to={route} component={component} />);
+  return (<Route key={id} path={route} component={component} />);
 });
 
 export const Header = () => (
