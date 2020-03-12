@@ -5,11 +5,12 @@ import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { todoReducer } from './modules/todo/reducer';
 import { counterReducer } from './modules/counter';
+import { headerReducer } from './modules/Login/reducer';
 
 const middlewares = [thunk, logger];
 const middlewareEnhancer = applyMiddleware(...middlewares);
 const enhancers = [middlewareEnhancer];
-const combinedReducers = combineReducers({ todoReducer, counterReducer });
+const combinedReducers = combineReducers({ todoReducer, counterReducer, headerReducer });
 
 export const store = createStore(
   combinedReducers,

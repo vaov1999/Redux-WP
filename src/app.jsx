@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { store } from './store';
-import { Header, Routes } from './modules/Header';
+import { Routes, Header } from './modules/Header';
 
 ReactDom.render(
   <BrowserRouter>
@@ -11,7 +11,7 @@ ReactDom.render(
       <Header />
 
       <Switch>
-        {Routes()}
+        <Routes />
       </Switch>
     </Provider>
   </BrowserRouter>,

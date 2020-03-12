@@ -1,5 +1,4 @@
 import {
-  GET_CURRENT_ROUTE,
   TODO_ADD,
   TODO_ADD_SUCCESS,
   TODO_GET_ITEMS,
@@ -13,17 +12,7 @@ import {
 } from '../../api';
 
 export function addTodoSuccess(todo) {
-  return {
-    type: TODO_ADD_SUCCESS,
-    payload: todo,
-  };
-}
-
-export function getCurrentRoute(route) {
-  return {
-    type: GET_CURRENT_ROUTE,
-    payload: route,
-  };
+  return { type: TODO_ADD_SUCCESS, payload: todo };
 }
 
 export function addTodo(title) {
@@ -39,10 +28,7 @@ export function addTodo(title) {
 }
 
 export function getTodosSuccess(items) {
-  return {
-    type: TODO_GET_ITEMS_SUCCESS,
-    payload: items,
-  };
+  return { type: TODO_GET_ITEMS_SUCCESS, payload: items };
 }
 
 export function getTodos() {
@@ -55,24 +41,15 @@ export function getTodos() {
 export function updateTodo(id, isCompleted) {
   putTodo({ id, isCompleted });
 
-  return {
-    type: TODO_UPDATE,
-    payload: { id, isCompleted },
-  };
+  return { type: TODO_UPDATE, payload: { id, isCompleted } };
 }
 
 export function removeTodo(id) {
   deleteTodo(id);
 
-  return {
-    type: TODO_REMOVE,
-    payload: { id },
-  };
+  return { type: TODO_REMOVE, payload: { id } };
 }
 
 export function setFilter(value) {
-  return {
-    type: TODO_SET_FILTER,
-    payload: { value },
-  };
+  return { type: TODO_SET_FILTER, payload: { value } };
 }

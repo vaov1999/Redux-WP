@@ -6,7 +6,6 @@ import {
   TODO_GET_ITEMS_SUCCESS,
   TODO_REMOVE,
   TODO_SET_FILTER,
-  GET_CURRENT_ROUTE,
 } from './constants';
 
 const initialState = {
@@ -21,13 +20,7 @@ export function todoReducer(state = initialState, { type, payload }) {
 
   switch (type) {
     case TODO_ADD:
-      return {
-        ...state,
-        isLoading: true,
-      };
-
-    case GET_CURRENT_ROUTE:
-      return { ...state, currentRoute: payload };
+      return { ...state, isLoading: true };
 
     case TODO_ADD_SUCCESS:
       return {
@@ -67,10 +60,7 @@ export function todoReducer(state = initialState, { type, payload }) {
     }
 
     case TODO_SET_FILTER: {
-      return {
-        ...state, // todo: what is happening if "...state,items" ?
-        filter: payload.value,
-      };
+      return { ...state, filter: payload.value };
     }
 
     default:
