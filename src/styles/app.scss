@@ -7,7 +7,6 @@ $main-color: #999999;
 .header {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 10px;
 }
 
 .header__item {
@@ -15,11 +14,8 @@ $main-color: #999999;
   justify-content: center;
   flex-grow: 2;
   border: solid $main-color 2px;
-  padding: 5px;
-}
-
-.header__item--active {
-  box-shadow: inset 5px 7px 10px #999999;
+  padding: 7px;
+  text-transform: uppercase;
 }
 
 .counter--wrapper {

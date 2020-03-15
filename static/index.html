@@ -215,25 +215,6 @@
 <body>
 <div id="root"></div>
 
-<!--<div class="todo">-->
-<!--    <div class="todo__title">Todo</div>-->
-<!--    <input id="todo-filter" class="todo-filter" type="text" placeholder="Type to filter"/>-->
-<!--    <div class="todo__controls">-->
-<!--        <input id="todo-input" class="todo-input" type="text" placeholder="Type Todo here"/>-->
-<!--        <button class="todo__controls-btn" id="todo-btn-add">Add</button>-->
-<!--    </div>-->
-<!--    <div id="todo-list-root" class="todo-list-root"></div>-->
-<!--</div>-->
-
-<!--<div class="doto">-->
-<!--    <div class="doto__title">Doto</div>-->
-<!--    <div class="doto__controls">-->
-<!--        <input id="doto-input" class="doto-input" type="text" placeholder="Type Doto here"/>-->
-<!--        <button class="doto__controls-btn" id="doto-btn-add">Add</button>-->
-<!--    </div>-->
-<!--    <div id="doto__list-root" class="doto__list-root"></div>-->
-<!--</div>-->
-
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
 <script async="true" src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>

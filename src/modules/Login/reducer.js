@@ -8,7 +8,7 @@ import { ENTER_REQUEST } from '../todo/constants';
 export const initialState = {
   isAdmin: false,
   login: '1',
-  password: '22',
+  password: '1',
   links: [
     {
       id: Date.now() - Math.random(),
@@ -40,7 +40,6 @@ export const initialState = {
     },
   ],
 };
-// window.open('http://127.0.0.1:3000/admin', '_self');
 export const enterRequest = isAdmin => ({ type: ENTER_REQUEST, isAdmin });
 
 export function headerReducer(state = initialState, { type, isAdmin }) {
