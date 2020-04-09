@@ -3,17 +3,22 @@ import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { store } from './store';
-import { Routes, Header } from './modules/Header';
+import { Routes, NavigationBar } from './modules/Navigaton-bar/NavigationBar';
 
-ReactDom.render(
+const App = () => (
   <BrowserRouter>
     <Provider store={store}>
-      <Header />
-
+      <NavigationBar />
       <Switch>
         <Routes />
       </Switch>
     </Provider>
-  </BrowserRouter>,
+  </BrowserRouter>
+);
+
+ReactDom.render(
+  <App />,
   document.getElementById('root'),
 );
+
+// //////////////////////////////////////////////////////////////////// //

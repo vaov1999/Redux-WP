@@ -1,19 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import './counter.scss';
 
 const INCREMENT = 'INCREMENT';
 const DECREMENT = 'DECREMENT';
 
-function incrementAction() {
-  return {
-    type: INCREMENT,
-  };
-}
-
+const incrementAction = () => ({ type: INCREMENT });
 const decrementAction = () => ({ type: DECREMENT });
 
-export function counterReducer(state = 0, action) {
-  switch (action.type) {
+const initialState = 0;
+
+export function counterReducer(state = initialState, { type }) {
+  switch (type) {
     case (INCREMENT):
       return state + 1;
     case (DECREMENT):
@@ -29,13 +27,21 @@ export function Counter() {
   return (
     <div className="counter--wrapper">
       <div className="counter">
-        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-        <div className="counter__decrement" onClick={() => dispatch(decrementAction())}>-</div>
+        <button
+          className="counter__decrement"
+          onClick={() => dispatch(decrementAction())}
+        >
+          -
+        </button>
         <div className="counter__value">
-          {useSelector(state => state.counterReducer)}
+          {useSelector((state) => state.counterReducer)}
         </div>
-        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-        <div className="counter__increment" onClick={() => dispatch(incrementAction())}>+</div>
+        <button
+          className="counter__increment"
+          onClick={() => dispatch(incrementAction())}
+        >
+          +
+        </button>
       </div>
     </div>
   );

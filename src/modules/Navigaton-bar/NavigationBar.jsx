@@ -1,20 +1,21 @@
 import React from 'react';
 import { Link, Redirect, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { enterRequest } from './Login/reducer';
+import { enterRequest } from './navigationBarReducer';
+import './navigationBar.scss';
 
-export const Header = () => {
-  const state = useSelector(header => header.headerReducer);
+export const NavigationBar = () => {
+  const state = useSelector((header) => header.navigationReducer);
   const dispatch = useDispatch();
   const LogOut = () => {
     if (state.isAdmin) {
       return (
         <Link
           to="/"
-          className="header__item"
+          className="nav__item"
           onClick={() => dispatch(enterRequest(false))}
         >
-        Log out
+          Log out
         </Link>
       );
     }
@@ -23,14 +24,14 @@ export const Header = () => {
   };
 
   return (
-    <header className="header">
+    <header className="nav">
       {LogOut()}
       {state.links.map(({
         id, title, route, isActive,
       }) => {
         if (state.isAdmin === false && route === '/') {
           return (
-            <Link className="header__item header__item--active" key={id} to={route}>
+            <Link className="nav__item " key={id} to={route}>
               {title}
             </Link>
           );
@@ -39,14 +40,14 @@ export const Header = () => {
         if (state.isAdmin && route !== '/') {
           if (isActive) {
             return (
-              <Link className="header__item header__item--active" key={id} to={route}>
+              <Link className="nav__item" key={id} to={route}>
                 {title}
               </Link>
             );
           }
 
           return (
-            <Link className="header__item" key={id} to={route}>
+            <Link className="nav__item" key={id} to={route}>
               {title}
             </Link>
           );
@@ -59,7 +60,7 @@ export const Header = () => {
 };
 
 export const Routes = () => {
-  const state = useSelector(header => header.headerReducer);
+  const state = useSelector((header) => header.navigationReducer);
 
   return state.links.map(({ id, route, component }) => {
     if (route === '/') {
@@ -67,7 +68,7 @@ export const Routes = () => {
     } if (route !== '/' && state.isAdmin === true) {
       return <Route key={id} path={route} component={component} />;
     } if (route !== '/' && state.isAdmin === false) {
-      return <Redirect from={route} to="/" />;
+      return <Redirect key={id} from={route} to="/" />;
     }
 
     return undefined;

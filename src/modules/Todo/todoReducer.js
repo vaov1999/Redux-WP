@@ -6,7 +6,7 @@ import {
   TODO_GET_ITEMS_SUCCESS,
   TODO_REMOVE,
   TODO_SET_FILTER,
-} from './constants';
+} from '../constants';
 
 const initialState = {
   filter: '',
@@ -30,7 +30,7 @@ export function todoReducer(state = initialState, { type, payload }) {
       };
 
     case TODO_UPDATE: {
-      const newItems = items.map(item => {
+      const newItems = items.map((item) => {
         if (item.id === payload.id) {
           return { ...item, ...payload.isCompleted };
         }
@@ -54,7 +54,7 @@ export function todoReducer(state = initialState, { type, payload }) {
     }
 
     case TODO_REMOVE: {
-      const newItems = items.filter(item => item.id !== payload.id);
+      const newItems = items.filter((item) => item.id !== payload.id);
 
       return { ...state, items: newItems };
     }

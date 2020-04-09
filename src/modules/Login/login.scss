@@ -1,55 +1,81 @@
+@import './src/styles/variables.scss';
+
 .login {
-  background: linear-gradient(90deg, rgba(63, 81, 181, 1) 0%, rgba(0, 212, 255, 1) 100%);
+  height: calc(100vh - #{$nav-height});
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
+  background: linear-gradient(90deg, rgba(0, 212, 255, 1) 0%, rgba(63, 81, 181, 1) 100%);
+}
+
+.login__front {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
+  padding: 40px;
+}
+
+.login__slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 450px;
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: 7px 10px 20px rgba(63, 81, 181, 1);
+}
+
+.login__form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
   padding: 20px;
-  height: 100vh;
+  min-width: 280px;
+  max-width: 360px;
+}
+
+.login__form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 2;
+  min-width: 240px;
+  max-width: 320px;
 }
 
 .login__logo {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   height: 100px;
-  background: #ffffff;
-  min-width: 300px;
-  max-width: 400px;
   border-radius: 5px;
   margin-bottom: 20px;
   font-size: 40px;
   color: #999999;
+  background: #ffffff;
+  box-shadow: 7px 10px 20px rgba(63, 81, 181, 1);
 }
 
 .login__aside {
   display: flex;
-  background: #ffffff;
   flex-direction: column;
-  min-width: 300px;
-  max-width: 400px;
+  width: 100%;
   border: solid #dadada 1px;
   border-radius: 5px;
   padding: 20px;
+  background: #ffffff;
+  box-shadow: 7px 10px 20px rgba(63, 81, 181, 1);
 }
 
-.login__inputs {
-  display: flex;
-  flex-direction: column;
-}
-
-.login__login--wrapper {
-}
-
-.login__login {
-  width: 100%;
-}
-
-.login__password--wrapper {
-  margin-top: 20px;
-}
-
-.login__password {
+.login__password,
+.login__login,
+.login__forgot-password,
+.login__sign-in {
   width: 100%;
 }
 
@@ -58,15 +84,21 @@
 }
 
 .login__sign-in {
-  width: 100%;
   padding: 5px;
   height: 70px;
 }
 
+.login__password--wrapper,
 .login__forgot-password--wrapper {
   margin-top: 20px;
 }
 
-.login__forgot-password {
-  width: 100%;
+@media (min-width: 0) and (max-width: 900px) {
+  .login__front {
+    display: none;
+  }
+
+  .login__form {
+    width: 100%;
+  }
 }

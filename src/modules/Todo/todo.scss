@@ -1,0 +1,83 @@
+@import './src/styles/variables.scss';
+
+$main-height: 35px;
+
+.todo__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: solid $color-firm2 1px;
+  height: $main-height;
+  font-weight: 600;
+}
+
+.todo__controls {
+  display: flex;
+  height: $main-height;
+}
+
+.todo__input {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: 0 5px;
+  border-bottom: solid $color-firm2 1px;
+}
+
+.todo__controls-btn {
+  width: $main-height;
+  height: 100%;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-left: solid $color-firm2 1px;
+  border-bottom: solid $color-firm2 1px;
+  background-color: #ffffff;
+}
+
+.todo__controls-btn:hover {
+  background-color: #dadada;
+}
+
+.todo__list-item {
+  display: flex;
+  justify-content: space-between;
+  height: $main-height;
+  padding-left: 5px;
+  align-items: center;
+  border-bottom: solid $color-firm2 1px;
+  background: #ffffff;
+}
+
+.todo__text {
+  padding: 0 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.todo__btn-del {
+  height: 100%;
+  width: $main-height;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-left: solid $color-firm2 1px;
+  background-color: #ffffff;
+}
+
+.todo__btn-del:hover {
+  background-color: #dadada;
+}
+
+.todo__switch-block {
+  width: 55px;
+  border-right: solid $color-firm2 1px;
+  margin-left: -5px;
+}
+
+.todo__btn {
+  color: $color-firm2;
+
+  &:hover {
+    color: #ff6060;
+  }
+}

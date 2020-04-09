@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-cycle
-import { Login } from './Login';
-import { Todo } from '../todo';
-import { Counter } from '../counter';
-import { Admin } from '../Admin';
-import { ENTER_REQUEST } from '../todo/constants';
+import { Login } from '../Login/Login';
+import { Todo } from '../Todo/Todo';
+import { Counter } from '../Counter/Counter';
+import { Reviews } from '../Reviews/Reviews';
+import { ENTER_REQUEST } from '../constants';
 
 export const initialState = {
   isAdmin: false,
@@ -19,10 +19,10 @@ export const initialState = {
     },
     {
       id: Date.now() - Math.random(),
-      title: 'admin',
-      route: '/admin',
+      title: 'Reviews',
+      route: '/reviews',
       isActive: false,
-      component: Admin,
+      component: Reviews,
     },
     {
       id: Date.now() - Math.random(),
@@ -40,9 +40,10 @@ export const initialState = {
     },
   ],
 };
-export const enterRequest = isAdmin => ({ type: ENTER_REQUEST, isAdmin });
 
-export function headerReducer(state = initialState, { type, isAdmin }) {
+export const enterRequest = (isAdmin) => ({ type: ENTER_REQUEST, isAdmin });
+
+export function navigationReducer(state = initialState, { type, isAdmin }) {
   if (type === ENTER_REQUEST) {
     return { ...state, isAdmin };
   }

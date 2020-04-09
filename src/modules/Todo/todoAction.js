@@ -6,7 +6,8 @@ import {
   TODO_REMOVE,
   TODO_SET_FILTER,
   TODO_UPDATE,
-} from './constants';
+} from '../constants';
+
 import {
   deleteTodo, postTodo, putTodo, requestTodoItems,
 } from '../../api';
@@ -21,9 +22,9 @@ export function addTodo(title) {
     title,
   };
 
-  return dispatch => {
+  return (dispatch) => {
     dispatch({ type: TODO_ADD });
-    postTodo(todo).then(result => dispatch(addTodoSuccess(result)));
+    postTodo(todo).then((result) => dispatch(addTodoSuccess(result)));
   };
 }
 
@@ -32,9 +33,9 @@ export function getTodosSuccess(items) {
 }
 
 export function getTodos() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({ type: TODO_GET_ITEMS });
-    requestTodoItems().then(result => dispatch(getTodosSuccess(result)));
+    requestTodoItems().then((result) => dispatch(getTodosSuccess(result)));
   };
 }
 
