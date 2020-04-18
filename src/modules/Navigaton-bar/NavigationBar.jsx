@@ -1,31 +1,24 @@
 import React from 'react';
 import { Link, Redirect, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { enterRequest } from './navigationBarReducer';
+import { signIn } from './navigationBarReducer';
 import './navigationBar.scss';
 
 export const NavigationBar = () => {
   const state = useSelector((header) => header.navigationReducer);
   const dispatch = useDispatch();
-  const LogOut = () => {
-    if (state.isAdmin) {
-      return (
+
+  return ( // todo: finish logout logic
+    <header className="nav">
+      {state.isAdmin && (
         <Link
           to="/"
           className="nav__item"
-          onClick={() => dispatch(enterRequest(false))}
+          onClick={() => dispatch(signIn(false))}
         >
           Log out
         </Link>
-      );
-    }
-
-    return undefined;
-  };
-
-  return (
-    <header className="nav">
-      {LogOut()}
+      )}
       {state.links.map(({
         id, title, route, isActive,
       }) => {

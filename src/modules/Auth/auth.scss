@@ -8,7 +8,7 @@
   background: linear-gradient(90deg, rgba(0, 212, 255, 1) 0%, rgba(63, 81, 181, 1) 100%);
 }
 
-.login__front {
+.auth__front {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,7 @@
   padding: 40px;
 }
 
-.login__slider {
+.auth__slider {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,17 +27,17 @@
   box-shadow: 7px 10px 20px rgba(63, 81, 181, 1);
 }
 
-.login__form {
+.auth__form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-grow: 2;
   padding: 20px;
-  min-width: 280px;
+  min-width: 240px;
   max-width: 360px;
 }
 
-.login__form-wrapper {
+.auth__form-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +47,7 @@
   max-width: 320px;
 }
 
-.login__logo {
+.auth__logo {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,44 +61,74 @@
   box-shadow: 7px 10px 20px rgba(63, 81, 181, 1);
 }
 
-.login__aside {
+.auth__aside {
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: solid #dadada 1px;
   border-radius: 5px;
   padding: 20px;
   background: #ffffff;
   box-shadow: 7px 10px 20px rgba(63, 81, 181, 1);
 }
 
-.login__password,
-.login__login,
-.login__forgot-password,
-.login__sign-in {
+.auth__mi-component {
   width: 100%;
 }
 
-.login__sign-in--wrapper {
-  margin-top: 30px;
+.auth__second-button--wrapper {
+  margin-top: 15px;
 }
 
-.login__sign-in {
+.auth__sign-in--wrapper {
+  margin-top: 25px;
+}
+
+.auth__sign-in {
   padding: 5px;
   height: 70px;
 }
 
-.login__password--wrapper,
-.login__forgot-password--wrapper {
-  margin-top: 20px;
+.auth__input--wrapper {
+  margin: 5px 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
-@media (min-width: 0) and (max-width: 900px) {
-  .login__front {
+.auth__error {
+  color: #555555;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px #ff6060;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.auth__progress {
+  margin-top: 10px;
+}
+
+@media (min-width: 361px) and (max-width: 900px) {
+  .auth__front {
     display: none;
   }
 
-  .login__form {
+  .auth__form {
     width: 100%;
+  }
+}
+
+@media (min-width: 0) and (max-width: 360px) {
+  .auth__front {
+    display: none;
+  }
+
+  .auth__form {
+    padding: 0;
+    max-width: 100%;
   }
 }

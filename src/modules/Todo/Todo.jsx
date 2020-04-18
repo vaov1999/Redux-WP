@@ -5,6 +5,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import { ToastContainer } from 'react-toastify';
 import {
   addTodo, getTodos, removeTodo, setFilter, updateTodo,
 } from './todoAction';
@@ -31,6 +32,7 @@ export const Todo = () => {
 
   return (
     <div className="todo">
+      <ToastContainer />
       <div className="todo__title">TODO LIST</div>
       <div className="todo__controls">
         <input

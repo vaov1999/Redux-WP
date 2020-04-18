@@ -1,10 +1,10 @@
 const API_URL = 'http://142.93.99.89:4500/api';
 
 export const fetchReviews = () => fetch(`${API_URL}/reviews`)
-  .then((response) => response.json());
+  .then((res) => res.json());
 
 export const fetchTodos = () => fetch(`${API_URL}/todo`)
-  .then((response) => response.json());
+  .then((res) => res.json());
 
 export const requestTodoItems = () => new Promise((resolve) => {
   setTimeout(() => resolve(fetchTodos()));
@@ -15,7 +15,24 @@ export const postTodo = (todo) => (
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(todo),
-  }).then((response) => response.json())
+  })
+    .then((res) => res.json())
+);
+
+export const postSignUp = (data) => (
+  fetch(`${API_URL}/user`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+);
+
+export const postSignIn = (data) => (
+  fetch(`${API_URL}/auth`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
 );
 
 export const putTodo = ({ id, isCompleted }) => (
@@ -23,10 +40,11 @@ export const putTodo = ({ id, isCompleted }) => (
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(isCompleted),
-  }).then((response) => response.json())
+  })
+    .then((res) => res.json())
 );
 
 export const deleteTodo = (id) => (
   fetch(`${API_URL}/todo/${id}`, { method: 'DELETE' })
-    .then((response) => response.text())
+    .then((res) => res.text())
 );
