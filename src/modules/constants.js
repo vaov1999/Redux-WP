@@ -1,3 +1,5 @@
+import { createBrowserHistory } from 'history';
+
 export const TODO_ADD = 'TODO_ADD';
 export const TODO_ADD_SUCCESS = 'TODO_ADD_SUCCESS';
 export const TODO_REMOVE = 'TODO_REMOVE';
@@ -13,3 +15,8 @@ export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
 export const SIGN_IN_ERROR = 'SIGN_IN_ERROR';
 export const SIGN_UP_ERROR = 'SIGN_UP_ERROR';
+export const SIGN_OUT = 'SIGN_OUT';
+export const HISTORY = createBrowserHistory();
+export const LOCATION = window.location;
+window.LOCATION = LOCATION;
+window.HISTORY = HISTORY;

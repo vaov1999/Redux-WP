@@ -1,52 +1,43 @@
 import React from 'react';
-import { Link, Redirect, Route } from 'react-router-dom';
+import { NavLink, Redirect, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { signIn } from './navigationBarReducer';
+import { isToken } from './navigationBarReducer';
 import './navigationBar.scss';
+import { SIGN_OUT } from '../constants';
+import { links, ROUTES_MAP } from '../../routing';
 
 export const NavigationBar = () => {
   const state = useSelector((header) => header.navigationReducer);
   const dispatch = useDispatch();
 
-  return ( // todo: finish logout logic
+  return (
     <header className="nav">
       {state.isAdmin && (
-        <Link
-          to="/"
+        <NavLink
+          to={ROUTES_MAP.signIn}
           className="nav__item"
-          onClick={() => dispatch(signIn(false))}
+          onClick={() => {
+            localStorage.clear();
+            dispatch({ type: SIGN_OUT, isAdmin: isToken() });
+          }}
         >
           Log out
-        </Link>
+        </NavLink>
       )}
-      {state.links.map(({
-        id, title, route, isActive,
-      }) => {
-        if (state.isAdmin === false && route === '/') {
+      {links.map(({ title, route }) => { // eslint-disable-line
+        if ((!state.isAdmin && route === ROUTES_MAP.signIn)
+          || (state.isAdmin && route !== ROUTES_MAP.signIn)) {
           return (
-            <Link className="nav__item " key={id} to={route}>
+            <NavLink
+              to={route}
+              activeClassName="nav__item--active"
+              className="nav__item"
+              key={title}
+            >
               {title}
-            </Link>
+            </NavLink>
           );
         }
-
-        if (state.isAdmin && route !== '/') {
-          if (isActive) {
-            return (
-              <Link className="nav__item" key={id} to={route}>
-                {title}
-              </Link>
-            );
-          }
-
-          return (
-            <Link className="nav__item" key={id} to={route}>
-              {title}
-            </Link>
-          );
-        }
-
-        return undefined;
       })}
     </header>
   );
@@ -55,15 +46,15 @@ export const NavigationBar = () => {
 export const Routes = () => {
   const state = useSelector((header) => header.navigationReducer);
 
-  return state.links.map(({ id, route, component }) => {
-    if (route === '/') {
-      return <Route exact key={id} path={route} component={component} />;
-    } if (route !== '/' && state.isAdmin === true) {
-      return <Route key={id} path={route} component={component} />;
-    } if (route !== '/' && state.isAdmin === false) {
-      return <Redirect key={id} from={route} to="/" />;
+  return links.map(({ title, route, component }) => { // eslint-disable-line
+    if (route === ROUTES_MAP.signIn) {
+      return <Route exact key={title} path={route} component={component} />;
     }
-
-    return undefined;
+    if (route !== ROUTES_MAP.signIn && state.isAdmin) {
+      return <Route key={title} path={route} component={component} />;
+    }
+    if (route !== ROUTES_MAP.signIn && !state.isAdmin) {
+      return <Redirect key={title} from={route} to="/" />;
+    }
   });
 };

@@ -1,4 +1,4 @@
-const API_URL = 'http://142.93.99.89:4500/api';
+export const API_URL = 'http://142.93.99.89:4500/api';
 
 export const fetchReviews = () => fetch(`${API_URL}/reviews`)
   .then((res) => res.json());

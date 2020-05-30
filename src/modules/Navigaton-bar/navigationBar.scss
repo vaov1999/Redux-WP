@@ -16,3 +16,7 @@
   text-transform: uppercase;
   background: #ffffff;
 }
+
+.nav__item--active {
+  box-shadow: inset 5px 5px 10px #999999;
+}

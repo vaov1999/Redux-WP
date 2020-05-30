@@ -7,7 +7,7 @@ import { Field, Form } from 'react-final-form';
 // eslint-disable-next-line import/no-cycle
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { ToastContainer } from 'react-toastify';
-import { signIn, signUp, errorResponse } from '../Navigaton-bar/navigationBarReducer'; // eslint-disable-line
+import { signIn, signUp, errorResponse } from '../Navigaton-bar/navigationBarActions'; // eslint-disable-line
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -21,13 +21,14 @@ const validatePassword = (value) => (PASSWORD_REGEXP.test(value || '')
 
 export const Auth = () => (
   <Form
-    onSubmit={}
+    onSubmit={{ email: 'vaov1999@gmail.com', password: 'Password2020!' }}
     render={({ values, valid }) => {
       const { name, email, password } = values;
       const dispatch = useDispatch();
       const state = useSelector((header) => header.navigationReducer);
       const [attemptsToSignInCount, setAttemptsToSignInCount] = useState(0);
       const [toRegister, setToRegister] = useState(false);
+
 
       const attemptsToSignUp = () => { // eslint-disable-line
         setAttemptsToSignInCount(attemptsToSignInCount + 1);
@@ -107,7 +108,7 @@ export const Auth = () => (
                 </Field>
                 {attemptsToSignInCount > 0 && !state.isAdmin && (
                   <div className="auth__error">
-                    {valid ? errorResponse : 'Follow the requirements above ❤'}
+                    {valid ? errorResponse : 'Follow the requirements above'}
                   </div>
                 )}
                 <div className="auth__sign-in--wrapper">
