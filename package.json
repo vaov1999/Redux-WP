@@ -64,7 +64,7 @@
         "@storybook/addon-info": "^5.3.18",
         "@storybook/addon-links": "^5.3.18",
         "@storybook/react": "^5.3.18",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "classnames": "^2.2.6",
         "eslint-plugin-react-hooks": "^3.0.0",
         "final-form": "^4.19.1",
